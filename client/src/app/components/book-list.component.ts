@@ -13,6 +13,7 @@ export class BookListComponent implements OnInit {
   limit = 10;
   offset = 0;
   terms = '';
+  newoffset = 0;
 
   books: BooksResponse = null;
 
@@ -44,7 +45,24 @@ export class BookListComponent implements OnInit {
 
   next() {
     //TODO - for Task 4
-    //this.noOfPage = this.calculate(this.books.total,this.books.limit);
+
+    this.newoffset = this.books.offset + this.books.limit;
+    console.log("this.newoffset: ", this.newoffset);
+    console.log("this.books.limit: ", this.books.limit);
+
+    const searchCriterialwOffset: SearchCriteria = {
+      terms: this.terms,
+      limit: this.limit,
+      offset: this.newoffset
+    }
+    this.bookSvc.getBooks(searchCriterialwOffset)
+    .then(result => {
+      this.books = result;
+      console.info('>getBoooks > result:', result);
+    }).catch(error => {
+      const errorResponse = error as ErrorResponse;
+      alert(`Status: ${errorResponse.status}\nMessage: ${errorResponse.message}`)
+    })
   }
 
   calculate (totalcount, perpage) {
