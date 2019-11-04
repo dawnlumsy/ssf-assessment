@@ -69,8 +69,12 @@ app.get('/api/search', (req, resp) => {
 
     const terms = req.query.terms;
     const limit = parseInt(req.query.limit) || 10;
-    //const offset = parseInt(req.query.offset) || 0;
     const offset = 0;
+    console.info("Please work enter>>> ", req.query.offset);
+    if (!req.query.offset) {
+        console.info("successfully enter");
+        const offset = parseInt(req.query.offset) || 0;
+    }
 
     if (!terms) {
         resp.status(400).type('application/json')
@@ -134,6 +138,25 @@ app.get('/api/book/:book_id',
             })
     }
 )
+
+
+app.get('api/book/:book_id/review', 
+    (req, resp) => {
+        console.info("external API: get book review");
+        const book_id = parseInt(req.params.book_id);
+        console.info("book_id: ", req.params.book_id);           
+        /*
+        headers: {
+            'Accept': 'application/json'
+        }
+        params: {
+            isbn: 
+            title: 
+            author: 
+        }*/
+
+
+})
 
 app.use(express.static(__dirname + '/public'));
 
