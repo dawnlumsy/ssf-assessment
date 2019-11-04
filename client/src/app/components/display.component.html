@@ -1,0 +1,20 @@
+<div>
+    <label> Book Id: {{ bookResponse.data.book_id }} </label><br>
+    <label> Title: {{ bookResponse.data.title }} </label><br>
+    <label> Authors: {{ bookResponse.data.authors }} </label><br>
+    <label> Description: {{ bookResponse.data.description }} </label><br>
+    <label> Edition: {{ bookResponse.data.edition }} </label><br>
+    <label> Format: {{ bookResponse.data.format }} </label><br>
+    <label> Pages: {{ bookResponse.data.pages }} </label><br>
+    <label> Rating: {{ bookResponse.data.rating }} </label><br>
+    <label> Rating Count: {{ bookResponse.data.rating_count }} </label><br>
+    <label> Review Count: {{ bookResponse.data.review_count }} </label><br>
+    <label> Genres: {{ bookResponse.data.genres }} </label><br>
+    <label> Image URL: {{ bookResponse.data.image_url }} </label><br>
+    <br><br>
+
+    <button type="button" (click)="navigateToHome()">
+        Back
+    </button>
+</div>
+
